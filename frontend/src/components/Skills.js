@@ -1,12 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FiCode, FiServer, FiDatabase, FiTool, FiImage } from 'react-icons/fi';
+import { FaReact, FaNodeJs, FaPython, FaDocker, FaGithub } from 'react-icons/fa';
 import { 
-  FiCode, FiServer, FiDatabase, FiTool, FiPalette,
-  FaReact, FaNodeJs, FaPython, FaDocker, FaGithub,
-  SiMongodb, SiExpress, SiDjango, SiPostgresql, SiTailwindcss,
-  SiBootstrap, SiBlender, SiVercel, SiJavascript, SiTypescript
-} from 'react-icons/all';
+  SiMongodb, 
+  SiExpress, 
+  SiDjango, 
+  SiPostgresql, 
+  SiTailwindcss,
+  SiBootstrap, 
+  SiBlender, 
+  SiVercel, 
+  SiJavascript, 
+  SiTypescript 
+} from 'react-icons/si';
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -62,12 +70,12 @@ const Skills = () => {
     },
     {
       title: "3D / Creative",
-      icon: FiPalette,
+      icon: FiImage,
       description: "I bend reality into pixels 🎨",
       skills: [
         { name: "Blender", icon: SiBlender, level: 80, color: "#F5792A" },
-        { name: "3D Animation", icon: FiPalette, level: 75, color: "#8B5CF6" },
-        { name: "VFX", icon: FiPalette, level: 70, color: "#EC4899" }
+        { name: "3D Animation", icon: FiImage, level: 75, color: "#8B5CF6" },
+        { name: "VFX", icon: FiImage, level: 70, color: "#EC4899" }
       ]
     }
   ];

@@ -16,7 +16,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
       liveUrl: "https://gym-rho-beryl.vercel.app/",
-      githubUrl: "https://github.com/zahidSkywalker/ecommerce-app",
+      githubUrl: "https://github.com/zahidSkywalker/gym-website",
       category: "Full Stack"
     },
     {
@@ -25,7 +25,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       technologies: ["React", "Python", "AI/ML", "OpenAI", "Tailwind"],
       liveUrl: "https://savoria-sable.vercel.app/",
-      githubUrl: "https://github.com/zahidSkywalker/ai-art-generator",
+      githubUrl: "https://github.com/zahidSkywalker/savoria-restaurant",
       category: "AI/ML"
     },
     {
@@ -34,7 +34,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1676299251950-8d9b1e5c1c1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       technologies: ["React", "Node.js", "OpenAI", "Socket.io", "Express"],
       liveUrl: "https://cafe-dusky-three.vercel.app/",
-      githubUrl: "https://github.com/zahidSkywalker/primrose-chatbot",
+      githubUrl: "https://github.com/zahidSkywalker/cafe-website",
       category: "AI/ML"
     },
     {
