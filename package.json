@@ -1,0 +1,19 @@
+{
+  "name": "zahidul-portfolio",
+  "version": "1.0.0",
+  "description": "Zahidul Islam's Portfolio - MERN Stack Developer & 3D Artist",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": ["portfolio", "mern", "react", "node", "mongodb"],
+  "author": "Zahidul Islam",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
