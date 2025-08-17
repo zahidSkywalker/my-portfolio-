@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,DELETE,PATCH,POST,PUT');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,DELETE,PATCH,POST,PUT,OPTIONS');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
@@ -24,9 +24,13 @@ export default async function handler(req, res) {
     return;
   }
 
+  // Only allow POST requests
   if (req.method !== 'POST') {
     console.log('Method not allowed:', req.method);
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ 
+      error: 'Method not allowed. Only POST requests are accepted.',
+      method: req.method 
+    });
   }
 
   try {
@@ -108,7 +112,8 @@ export default async function handler(req, res) {
     console.error('Contact form error:', error);
     res.status(500).json({ 
       error: 'Failed to send message. Please try again or contact me directly.',
-      success: false 
+      success: false,
+      details: error.message
     });
   }
 }

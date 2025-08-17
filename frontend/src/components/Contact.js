@@ -90,7 +90,18 @@ const Contact = () => {
 
     try {
       console.log('Sending form data:', formData);
-      const response = await axios.post('/api/contact', formData);
+      
+      // Make sure we're using the correct API endpoint
+      const apiUrl = '/api/contact';
+      console.log('API URL:', apiUrl);
+      
+      const response = await axios.post(apiUrl, formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        timeout: 10000 // 10 second timeout
+      });
+      
       console.log('Response:', response);
       setStatus({
         type: 'success',
@@ -100,9 +111,24 @@ const Contact = () => {
     } catch (error) {
       console.error('Contact form error:', error);
       console.error('Error response:', error.response);
+      console.error('Error message:', error.message);
+      
+      let errorMessage = 'Something went wrong. Please try again.';
+      
+      if (error.response) {
+        // Server responded with error status
+        errorMessage = error.response.data?.error || `Server error: ${error.response.status}`;
+      } else if (error.request) {
+        // Request was made but no response received
+        errorMessage = 'No response from server. Please check your connection.';
+      } else {
+        // Something else happened
+        errorMessage = error.message;
+      }
+      
       setStatus({
         type: 'error',
-        message: error.response?.data?.error || error.message || 'Something went wrong. Please try again.'
+        message: errorMessage
       });
     } finally {
       setIsSubmitting(false);
