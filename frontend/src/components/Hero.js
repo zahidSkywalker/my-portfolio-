@@ -49,9 +49,23 @@ const Hero = () => {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="space-y-4"
             >
-              <p className="text-lg text-primary-500 dark:text-primary-400 font-medium">
-                Hi, I'm Zahidul Islam 👋
-              </p>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.8 }}
+                className="text-lg text-primary-500 dark:text-primary-400 font-medium"
+              >
+                Hi, I'm{' '}
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 200 }}
+                  className="text-2xl font-bold name-glow tracking-wider"
+                >
+                  ZAHIDUL ISLAM
+                </motion.span>{' '}
+                👋
+              </motion.p>
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 A{' '}
                 <span className="gradient-text">MERN Stack Developer</span>,{' '}
@@ -141,7 +155,7 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary-200 dark:border-primary-800 shadow-2xl">
                   <img
-                    src="https://drive.google.com/uc?export=view&id=1JDPkM1bShKF83MXgFMl-CKDNZnnHUk0J"
+                    src="https://drive.google.com/uc?export=view&id=1JDPkM1bShKF83MXgFMl-CKDNZnnJUk0J"
                     alt="Zahidul Islam"
                     className="w-full h-full object-cover"
                     onError={(e) => {
