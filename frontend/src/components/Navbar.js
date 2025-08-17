@@ -41,10 +41,30 @@ const Navbar = () => {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold gradient-text"
+            className="flex items-center"
           >
             <Link to="home" smooth={true} duration={500} className="cursor-pointer">
-              Zahidul
+              <div className="flex items-center space-x-2">
+                {/* VSCode-style Icon */}
+                <div className="flex items-center space-x-1">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="w-3 h-3 rounded-full bg-red-500 shadow-sm"
+                  />
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"
+                  />
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="w-3 h-3 rounded-full bg-green-500 shadow-sm"
+                  />
+                </div>
+                {/* Text */}
+                <span className="text-lg font-bold text-gray-800 dark:text-white ml-2">
+                  Portfolio
+                </span>
+              </div>
             </Link>
           </motion.div>
 
