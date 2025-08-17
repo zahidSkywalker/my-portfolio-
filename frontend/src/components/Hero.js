@@ -8,6 +8,7 @@ import { FaWhatsapp, FaFacebookMessenger } from 'react-icons/fa';
 const Hero = () => {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
   
   const texts = useMemo(() => [
     "MERN Stack Developer",
@@ -16,33 +17,34 @@ const Hero = () => {
     "Creative Coder"
   ], []);
 
+  // Improved typewriter effect
   useEffect(() => {
-    const typeText = () => {
-      const currentFullText = texts[currentIndex];
-      
-      if (currentText.length < currentFullText.length) {
-        // Typing
-        setTimeout(() => {
-          setCurrentText(currentFullText.substring(0, currentText.length + 1));
-        }, 150);
-      } else {
-        // Finished typing, wait then move to next word
-        setTimeout(() => {
-          setCurrentIndex((prev) => (prev + 1) % texts.length);
-          setCurrentText('');
-        }, 3000);
-      }
-    };
+    if (!isTyping) return;
 
-    const timer = setTimeout(typeText, 150);
-    return () => clearTimeout(timer);
-  }, [currentText, currentIndex, texts]);
+    const currentFullText = texts[currentIndex];
+    
+    if (currentText.length < currentFullText.length) {
+      // Still typing current word
+      const timer = setTimeout(() => {
+        setCurrentText(currentFullText.substring(0, currentText.length + 1));
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      // Finished typing current word, wait then move to next
+      const timer = setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % texts.length);
+        setCurrentText('');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [currentText, currentIndex, texts, isTyping]);
 
-  // Start the animation
+  // Start the animation after component mounts
   useEffect(() => {
     const timer = setTimeout(() => {
+      setIsTyping(true);
       setCurrentText(texts[0].charAt(0));
-    }, 1000);
+    }, 1500);
     return () => clearTimeout(timer);
   }, [texts]);
 
@@ -170,14 +172,14 @@ const Hero = () => {
                 {' '}🔥
               </motion.h1>
               
-              {/* Debug text to ensure something shows */}
+              {/* Typewriter animation status */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
-                className="text-sm text-red-500 mt-2 font-bold"
+                className="text-sm text-primary-400 mt-2 font-medium"
               >
-                🔥 DEBUG: Current: "{currentText}" | Index: {currentIndex} | Full: "{texts[currentIndex]}"
+                ✨ Currently typing: {texts[currentIndex]}
               </motion.div>
               
               <motion.p 
