@@ -1,10 +1,47 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
 import { FaWhatsapp, FaFacebookMessenger } from 'react-icons/fa';
 
 const Hero = () => {
+  const [currentText, setCurrentText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  
+  const texts = [
+    "MERN Stack Developer",
+    "Django Enthusiast", 
+    "3D Artist",
+    "Creative Coder"
+  ];
+
+  useEffect(() => {
+    const typeSpeed = isDeleting ? 50 : 100;
+    const deleteSpeed = 50;
+    const pauseTime = 1000;
+
+    const typeText = () => {
+      const currentFullText = texts[currentIndex];
+      
+      if (isDeleting) {
+        setCurrentText(currentFullText.substring(0, currentText.length - 1));
+        if (currentText === '') {
+          setIsDeleting(false);
+          setCurrentIndex((prev) => (prev + 1) % texts.length);
+        }
+      } else {
+        setCurrentText(currentFullText.substring(0, currentText.length + 1));
+        if (currentText === currentFullText) {
+          setTimeout(() => setIsDeleting(true), pauseTime);
+        }
+      }
+    };
+
+    const timer = setTimeout(typeText, isDeleting ? deleteSpeed : typeSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentIndex, texts]);
+
   const socialLinks = [
     {
       name: 'GitHub',
@@ -33,8 +70,33 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="section-padding min-h-screen flex items-center">
-      <div className="container-custom">
+    <section id="home" className="section-padding min-h-screen flex items-center relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <motion.div
+        animate={{ 
+          rotate: 360,
+          scale: [1, 1.1, 1],
+        }}
+        transition={{ 
+          rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+          scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+        }}
+        className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-primary-400/20 to-primary-600/20 rounded-full blur-xl"
+      />
+      
+      <motion.div
+        animate={{ 
+          rotate: -360,
+          y: [0, -20, 0],
+        }}
+        transition={{ 
+          rotate: { duration: 25, repeat: Infinity, ease: "linear" },
+          y: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+        }}
+        className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-r from-purple-400/20 to-pink-600/20 rounded-full blur-xl"
+      />
+
+      <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -66,15 +128,34 @@ const Hero = () => {
                 </motion.span>{' '}
                 👋
               </motion.p>
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="text-4xl md:text-6xl font-bold leading-tight"
+              >
                 A{' '}
-                <span className="gradient-text">MERN Stack Developer</span>,{' '}
-                <span className="gradient-text">Django enthusiast</span>, and{' '}
-                <span className="gradient-text">3D Artist</span>
-              </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                <span className="gradient-text">
+                  <span className="inline-block">
+                    {currentText}
+                    <motion.span
+                      animate={{ opacity: [1, 0] }}
+                      transition={{ duration: 0.8, repeat: Infinity }}
+                      className="inline-block w-1 h-8 bg-primary-500 ml-1"
+                    />
+                  </span>
+                </span>
+              </motion.h1>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
+              >
                 I code apps, design experiences, and sometimes break the internet (don't worry, I fix it too 😅).
-              </p>
+              </motion.p>
             </motion.div>
 
             <motion.div
@@ -83,38 +164,70 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="space-y-6"
             >
-              <div className="bg-gradient-to-r from-primary-500/10 to-primary-600/10 dark:from-primary-400/20 dark:to-primary-500/20 p-6 rounded-xl border border-primary-200 dark:border-primary-800">
-                <p className="text-lg font-medium text-gray-700 dark:text-gray-200">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="bg-gradient-to-r from-primary-500/10 to-primary-600/10 dark:from-primary-400/20 dark:to-primary-500/20 p-6 rounded-xl border border-primary-200 dark:border-primary-800 relative overflow-hidden"
+              >
+                <motion.div
+                  animate={{ x: [0, 100, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                />
+                <p className="text-lg font-medium text-gray-700 dark:text-gray-200 relative z-10">
                   💡 Motto: "I don't just write code, I write stories in JavaScript and Python."
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="flex flex-wrap gap-4">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.8 }}
+                className="flex flex-wrap gap-4"
+              >
                 <Link to="contact" smooth={true} duration={500}>
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="btn-primary flex items-center gap-2"
+                    className="btn-primary flex items-center gap-2 relative overflow-hidden group"
                   >
-                    <FiMail className="w-5 h-5" />
-                    Get In Touch
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-700"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '0%' }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <FiMail className="w-5 h-5 relative z-10" />
+                    <span className="relative z-10">Get In Touch</span>
                   </motion.button>
                 </Link>
                 
                 <motion.a
                   href="/resume.pdf"
                   download
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-secondary flex items-center gap-2"
+                  className="btn-secondary flex items-center gap-2 relative overflow-hidden group"
                 >
-                  <FiDownload className="w-5 h-5" />
-                  Download CV
+                  <motion.div
+                    className="absolute inset-0 bg-primary-500"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '0%' }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <FiDownload className="w-5 h-5 relative z-10" />
+                  <span className="relative z-10">Download CV</span>
                 </motion.a>
-              </div>
+              </motion.div>
 
               {/* Social Links */}
-              <div className="flex items-center gap-4">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.8 }}
+                className="flex items-center gap-4"
+              >
                 <span className="text-gray-600 dark:text-gray-400">Follow me:</span>
                 <div className="flex gap-3">
                   {socialLinks.map((social, index) => (
@@ -123,19 +236,19 @@ const Hero = () => {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
-                      whileHover={{ scale: 1.2, y: -5 }}
+                      initial={{ opacity: 0, y: 20, scale: 0 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ delay: 1.4 + index * 0.1, duration: 0.5, type: "spring" }}
+                      whileHover={{ scale: 1.2, y: -5, rotate: 5 }}
                       whileTap={{ scale: 0.9 }}
-                      className={`p-3 rounded-full bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-all duration-300 ${social.color}`}
+                      className={`p-3 rounded-full bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-all duration-300 ${social.color} shadow-lg hover:shadow-xl`}
                       title={social.name}
                     >
                       <social.icon className="w-5 h-5" />
                     </motion.a>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </motion.div>
 
@@ -152,7 +265,16 @@ const Hero = () => {
               className="relative"
             >
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+                {/* Enhanced Glow Effect */}
+                <motion.div 
+                  animate={{ 
+                    scale: [1, 1.1, 1],
+                    opacity: [0.2, 0.4, 0.2]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full blur-3xl"
+                />
+                
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary-200 dark:border-primary-800 shadow-2xl">
                   <img
                     src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1755423286/IMG_8802_m9ge9g.jpg"
@@ -165,29 +287,86 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>
                 </div>
                 
-                {/* Floating Elements */}
+                {/* Enhanced Floating Elements */}
                 <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute -top-4 -right-4 w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                  animate={{ 
+                    rotate: 360,
+                    y: [0, -10, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                    y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                    scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                  className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
                 >
                   React
                 </motion.div>
                 
                 <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                  className="absolute -bottom-4 -left-4 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                  animate={{ 
+                    rotate: -360,
+                    y: [0, 10, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    rotate: { duration: 25, repeat: Infinity, ease: "linear" },
+                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                    scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                  className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
                 >
                   Django
                 </motion.div>
                 
                 <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-1/2 -left-8 w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xs"
+                  animate={{ 
+                    y: [0, -15, 0],
+                    rotate: [0, 10, 0],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{ 
+                    y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                    scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                  className="absolute top-1/2 -left-8 w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-lg"
                 >
                   3D
+                </motion.div>
+
+                {/* New Floating Elements */}
+                <motion.div
+                  animate={{ 
+                    y: [0, 15, 0],
+                    rotate: [0, -15, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                    scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                  className="absolute top-1/4 -right-12 w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-lg"
+                >
+                  JS
+                </motion.div>
+
+                <motion.div
+                  animate={{ 
+                    y: [0, -12, 0],
+                    rotate: [0, 20, 0],
+                    scale: [1, 1.15, 1]
+                  }}
+                  transition={{ 
+                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                    scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                  className="absolute bottom-1/4 -right-6 w-8 h-8 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-lg"
+                >
+                  CSS
                 </motion.div>
               </div>
             </motion.div>
