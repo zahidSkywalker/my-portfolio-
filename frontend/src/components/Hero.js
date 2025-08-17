@@ -26,16 +26,22 @@ const Hero = () => {
       const currentFullText = texts[currentIndex];
       
       if (isDeleting) {
-        setCurrentText(currentFullText.substring(0, currentText.length - 1));
-        if (currentText === '') {
-          setIsDeleting(false);
-          setCurrentIndex((prev) => (prev + 1) % texts.length);
-        }
+        setCurrentText(prev => {
+          const newText = currentFullText.substring(0, prev.length - 1);
+          if (newText === '') {
+            setIsDeleting(false);
+            setCurrentIndex(prevIndex => (prevIndex + 1) % texts.length);
+          }
+          return newText;
+        });
       } else {
-        setCurrentText(currentFullText.substring(0, currentText.length + 1));
-        if (currentText === currentFullText) {
-          setTimeout(() => setIsDeleting(true), pauseTime);
-        }
+        setCurrentText(prev => {
+          const newText = currentFullText.substring(0, prev.length + 1);
+          if (newText === currentFullText) {
+            setTimeout(() => setIsDeleting(true), pauseTime);
+          }
+          return newText;
+        });
       }
     };
 
@@ -123,7 +129,11 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 200 }}
-                  className="text-2xl font-bold name-glow tracking-wider"
+                  className="text-2xl font-bold text-white dark:text-white tracking-wider bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent"
+                  style={{
+                    textShadow: '0 0 20px rgba(14, 165, 233, 0.5)',
+                    filter: 'drop-shadow(0 0 10px rgba(14, 165, 233, 0.3))'
+                  }}
                 >
                   ZAHIDUL ISLAM
                 </motion.span>{' '}
@@ -134,10 +144,10 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-4xl md:text-6xl font-bold leading-tight"
+                className="text-4xl md:text-6xl font-bold leading-tight text-white dark:text-white"
               >
                 A{' '}
-                <span className="gradient-text">
+                <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent">
                   <span className="inline-block">
                     {currentText}
                     <motion.span
@@ -153,7 +163,8 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
-                className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
+                className="text-xl text-white dark:text-white leading-relaxed font-medium"
+                style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)' }}
               >
                 I code apps, design experiences, and sometimes break the internet (don't worry, I fix it too 😅).
               </motion.p>
@@ -176,7 +187,7 @@ const Hero = () => {
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
                 />
-                <p className="text-lg font-medium text-gray-700 dark:text-gray-200 relative z-10">
+                <p className="text-lg font-medium text-white dark:text-white relative z-10 font-semibold">
                   💡 Motto: "I don't just write code, I write stories in JavaScript and Python."
                 </p>
               </motion.div>
