@@ -89,16 +89,20 @@ const Contact = () => {
     setStatus({ type: '', message: '' });
 
     try {
+      console.log('Sending form data:', formData);
       const response = await axios.post('/api/contact', formData);
+      console.log('Response:', response);
       setStatus({
         type: 'success',
         message: response.data.message
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
+      console.error('Contact form error:', error);
+      console.error('Error response:', error.response);
       setStatus({
         type: 'error',
-        message: error.response?.data?.error || 'Something went wrong. Please try again.'
+        message: error.response?.data?.error || error.message || 'Something went wrong. Please try again.'
       });
     } finally {
       setIsSubmitting(false);

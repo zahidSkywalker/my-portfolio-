@@ -1,6 +1,13 @@
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
+  console.log('API endpoint called:', req.method, req.url);
+  console.log('Request body:', req.body);
+  console.log('Environment variables check:', {
+    EMAIL_USER: process.env.EMAIL_USER ? 'Set' : 'Not set',
+    EMAIL_PASS: process.env.EMAIL_PASS ? 'Set' : 'Not set'
+  });
+
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,28 +19,40 @@ export default async function handler(req, res) {
 
   // Handle preflight request
   if (req.method === 'OPTIONS') {
+    console.log('Handling preflight request');
     res.status(200).end();
     return;
   }
 
   if (req.method !== 'POST') {
+    console.log('Method not allowed:', req.method);
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
     const { name, email, subject, message } = req.body;
+    console.log('Received form data:', { name, email, subject, message });
 
     // Validate input
     if (!name || !email || !subject || !message) {
+      console.log('Validation failed: missing fields');
       return res.status(400).json({ error: 'All fields are required' });
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      console.log('Email validation failed:', email);
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
+    // Check if environment variables are set
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('Environment variables not set');
+      return res.status(500).json({ error: 'Email configuration not set up. Please contact the administrator.' });
+    }
+
+    console.log('Creating email transporter...');
     // Create transporter
     const transporter = nodemailer.createTransporter({
       service: 'gmail',
@@ -75,8 +94,10 @@ export default async function handler(req, res) {
       `
     };
 
+    console.log('Sending email...');
     // Send email
     await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully');
 
     res.status(200).json({ 
       message: 'Message sent successfully! Check your email for confirmation.',
