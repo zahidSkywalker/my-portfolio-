@@ -25,10 +25,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "functions": {
-    "api/contact.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  ]
 }
