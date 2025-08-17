@@ -78,59 +78,6 @@ export default async function handler(req, res) {
     // Send email
     await transporter.sendMail(mailOptions);
 
-    // Send auto-reply to sender
-    const autoReplyOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: 'Thank you for contacting Zahidul Islam',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #0ea5e9; border-bottom: 2px solid #0ea5e9; padding-bottom: 10px;">
-            Thank you for reaching out! 👋
-          </h2>
-          
-          <p style="line-height: 1.6; color: #475569;">
-            Hi ${name},
-          </p>
-          
-          <p style="line-height: 1.6; color: #475569;">
-            Thank you for contacting me through my portfolio website. I've received your message and will get back to you as soon as possible.
-          </p>
-          
-          <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #334155; margin-top: 0;">Your Message Summary</h3>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Message:</strong> ${message.substring(0, 100)}${message.length > 100 ? '...' : ''}</p>
-          </div>
-          
-          <p style="line-height: 1.6; color: #475569;">
-            In the meantime, feel free to check out my latest projects or connect with me on social media:
-          </p>
-          
-          <div style="margin: 20px 0;">
-            <a href="https://github.com/zahidSkywalker" style="display: inline-block; margin: 5px; padding: 10px 20px; background: #181717; color: white; text-decoration: none; border-radius: 5px;">GitHub</a>
-            <a href="https://linkedin.com/in/zahidul-islam" style="display: inline-block; margin: 5px; padding: 10px 20px; background: #0077b5; color: white; text-decoration: none; border-radius: 5px;">LinkedIn</a>
-            <a href="https://wa.me/8801842089174" style="display: inline-block; margin: 5px; padding: 10px 20px; background: #25D366; color: white; text-decoration: none; border-radius: 5px;">WhatsApp</a>
-          </div>
-          
-          <p style="line-height: 1.6; color: #475569;">
-            Best regards,<br>
-            <strong>Zahidul Islam</strong><br>
-            MERN Stack Developer & 3D Artist
-          </p>
-          
-          <div style="margin-top: 30px; padding: 15px; background: #f0f9ff; border-left: 4px solid #0ea5e9; border-radius: 4px;">
-            <p style="margin: 0; color: #0369a1; font-size: 12px;">
-              This is an automated response. Please don't reply to this email.
-            </p>
-          </div>
-        </div>
-      `
-    };
-
-    // Send auto-reply
-    await transporter.sendMail(autoReplyOptions);
-
     res.status(200).json({ 
       message: 'Message sent successfully! Check your email for confirmation.',
       success: true 
