@@ -284,8 +284,8 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>
                 </div>
                 
-                {/* Skill Icons Column - Under Photo Ring */}
-                <div className="absolute -bottom-32 sm:-bottom-40 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 sm:gap-3">
+                {/* Skill Icons Zigzag - Under Photo Ring */}
+                <div className="absolute -bottom-20 sm:-bottom-24 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-3 sm:gap-4 max-w-full px-4">
                   {skillIcons.map((skill, index) => (
                     <motion.div
                       key={skill.name}
@@ -304,6 +304,9 @@ const Hero = () => {
                       className={`bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group ${
                         skill.size === 'small' ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-10 h-10 sm:w-12 sm:h-12'
                       }`}
+                      style={{
+                        transform: `translateY(${index % 2 === 0 ? '0px' : '8px'})`
+                      }}
                       title={skill.name}
                     >
                       {/* Random Pulsing/Jiggly Effect */}
