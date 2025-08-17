@@ -155,13 +155,14 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary-200 dark:border-primary-800 shadow-2xl">
                   <img
-                    src="https://drive.google.com/uc?export=view&id=1JDPkM1bShKF83MXgFMl-CKDNZnnJUk0J"
+                    src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1755423286/IMG_8802_m9ge9g.jpg"
                     alt="Zahidul Islam"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     onError={(e) => {
                       e.target.src = 'https://via.placeholder.com/400x400/0ea5e9/ffffff?text=Zahidul+Islam';
                     }}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>
                 </div>
                 
                 {/* Floating Elements */}
