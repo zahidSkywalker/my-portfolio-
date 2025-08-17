@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
 import { FaWhatsapp, FaFacebookMessenger } from 'react-icons/fa';
@@ -10,12 +10,12 @@ const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   
-  const texts = [
+  const texts = useMemo(() => [
     "MERN Stack Developer",
     "Django Enthusiast", 
     "3D Artist",
     "Creative Coder"
-  ];
+  ], []);
 
   useEffect(() => {
     const typeSpeed = isDeleting ? 50 : 100;

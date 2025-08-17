@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiCode, FiServer, FiDatabase, FiTool } from 'react-icons/fi';
@@ -15,13 +15,13 @@ const Skills = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   
-  const skillTexts = [
+  const skillTexts = useMemo(() => [
     "Frontend Development",
     "Backend Development", 
     "Database Management",
     "DevOps & Tools",
     "3D & Creative"
-  ];
+  ], []);
 
   useEffect(() => {
     const typeSpeed = isDeleting ? 50 : 100;
