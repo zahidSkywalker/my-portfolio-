@@ -284,8 +284,8 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>
                 </div>
                 
-                {/* Skill Icons Row - Under Photo */}
-                <div className="absolute -bottom-16 sm:-bottom-20 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-2 sm:gap-3 max-w-full px-4">
+                {/* Skill Icons Column - Under Photo Ring */}
+                <div className="absolute -bottom-32 sm:-bottom-40 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 sm:gap-3">
                   {skillIcons.map((skill, index) => (
                     <motion.div
                       key={skill.name}
