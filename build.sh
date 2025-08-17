@@ -1,23 +1,25 @@
 #!/bin/bash
 
-echo "🚀 Building Zahidul's Portfolio..."
+echo "🚀 Starting build process..."
 
-# Install frontend dependencies
-echo "📦 Installing frontend dependencies..."
+# Navigate to frontend directory
 cd frontend
+
+# Install dependencies
+echo "📦 Installing dependencies..."
 npm install
 
-# Build the frontend
-echo "🔨 Building frontend..."
+# Build the project
+echo "🔨 Building the project..."
 npm run build
 
-# Check if build was successful
+# Check if build directory exists
 if [ -d "build" ]; then
     echo "✅ Build successful! Build directory found."
     ls -la build/
 else
-    echo "❌ Build failed! No build directory found."
+    echo "❌ Build failed! Build directory not found."
     exit 1
 fi
 
-echo "🎉 Build completed successfully!"
+echo "🎉 Build process completed!"
