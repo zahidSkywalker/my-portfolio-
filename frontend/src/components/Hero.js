@@ -4,7 +4,7 @@ import { Link } from 'react-scroll';
 import { FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
 import { FaWhatsapp, FaFacebookMessenger } from 'react-icons/fa';
 
-// Enhanced Hero component with stunning animations
+// Enhanced Hero component with stunning animations and typewriter effect
 const Hero = () => {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
