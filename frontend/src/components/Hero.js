@@ -18,7 +18,6 @@ import {
   SiGit,
   SiVercel,
   SiFigma,
-  SiAdobephotoshop,
   SiAdobeaftereffects
 } from 'react-icons/si';
 
@@ -71,6 +70,56 @@ const Hero = () => {
 
   return (
     <section id="home" className="section-padding min-h-screen flex items-center relative overflow-hidden px-4 sm:px-6 lg:px-8">
+      {/* Gradient Morphing Background */}
+      <motion.div
+        animate={{ 
+          background: [
+            'linear-gradient(45deg, #667eea 0%, #764ba2 100%)',
+            'linear-gradient(45deg, #f093fb 0%, #f5576c 100%)',
+            'linear-gradient(45deg, #4facfe 0%, #00f2fe 100%)',
+            'linear-gradient(45deg, #43e97b 0%, #38f9d7 100%)',
+            'linear-gradient(45deg, #667eea 0%, #764ba2 100%)'
+          ]
+        }}
+        transition={{ 
+          duration: 8, 
+          repeat: Infinity, 
+          ease: "linear" 
+        }}
+        className="absolute inset-0 opacity-10"
+      />
+      
+      {/* Lightning/Energy Effects */}
+      <motion.div
+        animate={{ 
+          opacity: [0, 1, 0],
+          scale: [1, 1.2, 1],
+          rotate: [0, 5, -5, 0]
+        }}
+        transition={{ 
+          duration: 3, 
+          repeat: Infinity, 
+          ease: "easeInOut",
+          delay: 1
+        }}
+        className="absolute top-0 left-1/4 w-1 h-32 bg-gradient-to-b from-transparent via-yellow-400 to-transparent opacity-60"
+      />
+      
+      <motion.div
+        animate={{ 
+          opacity: [0, 1, 0],
+          scale: [1, 1.1, 1],
+          rotate: [0, -3, 3, 0]
+        }}
+        transition={{ 
+          duration: 2.5, 
+          repeat: Infinity, 
+          ease: "easeInOut",
+          delay: 2.5
+        }}
+        className="absolute top-0 right-1/3 w-1 h-24 bg-gradient-to-b from-transparent via-blue-400 to-transparent opacity-60"
+      />
+
       {/* Animated Background Elements */}
       <motion.div
         animate={{ 
@@ -122,13 +171,54 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 200 }}
-                  className="text-xl sm:text-2xl font-bold text-white dark:text-white tracking-wider bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent"
+                  className="text-2xl font-bold text-white dark:text-white tracking-wider bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent relative"
                   style={{
                     textShadow: '0 0 20px rgba(14, 165, 233, 0.5)',
                     filter: 'drop-shadow(0 0 10px rgba(14, 165, 233, 0.3))'
                   }}
                 >
-                  ZAHIDUL ISLAM
+                  <span className="relative">
+                    ZAHIDUL ISLAM
+                    {/* Glitch Effect */}
+                    <motion.span
+                      animate={{ 
+                        x: [0, -2, 2, 0],
+                        opacity: [1, 0.8, 1, 0.9, 1]
+                      }}
+                      transition={{ 
+                        duration: 0.3, 
+                        repeat: Infinity, 
+                        ease: "easeInOut",
+                        delay: 2
+                      }}
+                      className="absolute inset-0 text-red-400 opacity-80"
+                      style={{ 
+                        clipPath: 'polygon(0 0, 100% 0, 100% 45%, 0 45%)',
+                        transform: 'translate(-1px, -1px)'
+                      }}
+                    >
+                      ZAHIDUL ISLAM
+                    </motion.span>
+                    <motion.span
+                      animate={{ 
+                        x: [0, 2, -2, 0],
+                        opacity: [1, 0.7, 1, 0.8, 1]
+                      }}
+                      transition={{ 
+                        duration: 0.4, 
+                        repeat: Infinity, 
+                        ease: "easeInOut",
+                        delay: 2.5
+                      }}
+                      className="absolute inset-0 text-blue-400 opacity-80"
+                      style={{ 
+                        clipPath: 'polygon(0 55%, 100% 55%, 100% 100%, 0 100%)',
+                        transform: 'translate(1px, 1px)'
+                      }}
+                    >
+                      ZAHIDUL ISLAM
+                    </motion.span>
+                  </span>
                 </motion.span>
               </motion.p>
               
@@ -174,9 +264,11 @@ const Hero = () => {
                     }}
                     whileHover={{ 
                       scale: 1.2, 
-                      transition: { duration: 0.3 }
+                      rotateY: 180,
+                      rotateX: 180,
+                      transition: { duration: 0.6, type: "spring" }
                     }}
-                    className={`bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group ${
+                    className={`bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group perspective-1000 ${
                       skill.size === 'small' ? 'w-10 h-10 sm:w-12 sm:h-12' : 'w-12 h-12 sm:w-14 sm:h-14'
                     }`}
                     title={skill.name}
@@ -194,7 +286,7 @@ const Hero = () => {
                         ease: "easeInOut",
                         delay: skill.delay * 0.2
                       }}
-                                              className={`${skill.size === 'small' ? 'text-base sm:text-lg' : 'text-lg sm:text-xl'} relative z-10`}
+                      className={`${skill.size === 'small' ? 'text-base sm:text-lg' : 'text-lg sm:text-xl'} relative z-10`}
                       style={{ color: skill.color }}
                     >
                       <skill.icon />
@@ -245,7 +337,7 @@ const Hero = () => {
                   <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="btn-primary flex items-center gap-2 relative overflow-hidden group w-full sm:w-auto justify-center"
+                    className="btn-primary flex items-center gap-2 relative overflow-hidden group w-full sm:w-auto justify-center ripple-button"
                   >
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-700"
@@ -263,7 +355,7 @@ const Hero = () => {
                   download
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-secondary flex items-center gap-2 relative overflow-hidden group w-full sm:w-auto justify-center"
+                  className="btn-secondary flex items-center gap-2 relative overflow-hidden group w-full sm:w-auto justify-center ripple-button"
                 >
                   <motion.div
                     className="absolute inset-0 bg-primary-500"
@@ -296,7 +388,7 @@ const Hero = () => {
                       transition={{ delay: 1.4 + index * 0.1, duration: 0.5, type: "spring" }}
                       whileHover={{ scale: 1.2, y: -5, rotate: 5 }}
                       whileTap={{ scale: 0.9 }}
-                      className={`p-2 sm:p-3 rounded-full bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-all duration-300 ${social.color} shadow-lg hover:shadow-xl`}
+                      className={`p-2 sm:p-3 rounded-full bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-all duration-300 ${social.color} shadow-lg hover:shadow-xl ripple-button`}
                       title={social.name}
                     >
                       <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -341,8 +433,6 @@ const Hero = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>
                 </div>
-                
-
               </div>
             </motion.div>
           </motion.div>

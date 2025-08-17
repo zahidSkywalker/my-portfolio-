@@ -200,7 +200,19 @@ const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
-              variants={itemVariants}
+              variants={{
+                hidden: { opacity: 0, x: categoryIndex % 2 === 0 ? -50 : 50, y: 30 },
+                visible: { 
+                  opacity: 1, 
+                  x: 0, 
+                  y: 0,
+                  transition: {
+                    duration: 0.8,
+                    ease: "easeOut",
+                    delay: categoryIndex * 0.2
+                  }
+                }
+              }}
               whileHover={{ 
                 scale: 1.02,
                 y: -5,
@@ -219,8 +231,8 @@ const Skills = () => {
               <div className="relative z-10">
                 <motion.div
                   initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: categoryIndex * 0.1, duration: 0.5, type: "spring" }}
+                  animate={inView ? { scale: 1 } : { scale: 0 }}
+                  transition={{ delay: categoryIndex * 0.2 + 0.3, duration: 0.5, type: "spring" }}
                   className="flex items-center gap-4 mb-6"
                 >
                   <motion.div
@@ -230,14 +242,18 @@ const Skills = () => {
                   >
                     <category.icon />
                   </motion.div>
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    transition={{ delay: categoryIndex * 0.2 + 0.5, duration: 0.6, ease: "easeOut" }}
+                  >
                     <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
                       {category.title}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
                       {category.description}
                     </p>
-                  </div>
+                  </motion.div>
                 </motion.div>
 
                 <div className="space-y-4">
@@ -245,8 +261,12 @@ const Skills = () => {
                     <motion.div
                       key={skill.name}
                       initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (categoryIndex * 0.1) + (skillIndex * 0.1), duration: 0.5 }}
+                      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      transition={{ 
+                        delay: (categoryIndex * 0.2) + (skillIndex * 0.1) + 0.7, 
+                        duration: 0.5,
+                        ease: "easeOut"
+                      }}
                       className="group/skill"
                     >
                       <div className="flex items-center justify-between mb-2">
@@ -271,10 +291,10 @@ const Skills = () => {
                       <div className="w-full bg-gray-200 dark:bg-dark-600 rounded-full h-2 overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
+                          animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
                           transition={{ 
-                            delay: (categoryIndex * 0.1) + (skillIndex * 0.1) + 0.5, 
-                            duration: 1,
+                            delay: (categoryIndex * 0.2) + (skillIndex * 0.1) + 1, 
+                            duration: 1.5,
                             ease: "easeOut"
                           }}
                           className="h-full rounded-full relative overflow-hidden"
@@ -294,12 +314,12 @@ const Skills = () => {
             </motion.div>
           ))}
         </motion.div>
-
+        
         {/* Always Learning Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1, duration: 0.8 }}
+          transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
           className="mt-16 text-center"
         >
           <motion.div
