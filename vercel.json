@@ -11,12 +11,20 @@
     {
       "src": "frontend/api/contact.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/api/test.js",
+      "use": "@vercel/node"
     }
   ],
   "rewrites": [
     {
       "source": "/api/contact",
       "destination": "/frontend/api/contact.js"
+    },
+    {
+      "source": "/api/test",
+      "destination": "/frontend/api/test.js"
     },
     {
       "source": "/(.*)",
