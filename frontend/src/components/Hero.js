@@ -24,19 +24,27 @@ const Hero = () => {
         // Typing
         setTimeout(() => {
           setCurrentText(currentFullText.substring(0, currentText.length + 1));
-        }, 100);
+        }, 150);
       } else {
         // Finished typing, wait then move to next word
         setTimeout(() => {
           setCurrentIndex((prev) => (prev + 1) % texts.length);
           setCurrentText('');
-        }, 2000);
+        }, 3000);
       }
     };
 
-    const timer = setTimeout(typeText, 100);
+    const timer = setTimeout(typeText, 150);
     return () => clearTimeout(timer);
   }, [currentText, currentIndex, texts]);
+
+  // Start the animation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentText(texts[0].charAt(0));
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [texts]);
 
   const socialLinks = [
     {
@@ -126,7 +134,20 @@ const Hero = () => {
                 >
                   ZAHIDUL ISLAM
                 </motion.span>{' '}
-                👋
+                <motion.span
+                  animate={{ 
+                    rotate: [0, 10, -10, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="inline-block text-2xl font-bold text-primary-500"
+                >
+                  &lt;/&gt;
+                </motion.span>
               </motion.p>
               
               <motion.h1 
@@ -147,6 +168,16 @@ const Hero = () => {
                   </span>
                 </span>
               </motion.h1>
+              
+              {/* Debug text to ensure something shows */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                className="text-sm text-gray-400 mt-2"
+              >
+                Current: "{currentText}" | Index: {currentIndex} | Full: "{texts[currentIndex]}"
+              </motion.div>
               
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
