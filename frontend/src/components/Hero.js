@@ -8,7 +8,6 @@ import { FaWhatsapp, FaFacebookMessenger } from 'react-icons/fa';
 const Hero = () => {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
   
   const texts = useMemo(() => [
     "MERN Stack Developer",
@@ -18,36 +17,26 @@ const Hero = () => {
   ], []);
 
   useEffect(() => {
-    const typeSpeed = isDeleting ? 50 : 100;
-    const deleteSpeed = 50;
-    const pauseTime = 1000;
-
     const typeText = () => {
       const currentFullText = texts[currentIndex];
       
-      if (isDeleting) {
-        setCurrentText(prev => {
-          const newText = currentFullText.substring(0, prev.length - 1);
-          if (newText === '') {
-            setIsDeleting(false);
-            setCurrentIndex(prevIndex => (prevIndex + 1) % texts.length);
-          }
-          return newText;
-        });
+      if (currentText.length < currentFullText.length) {
+        // Typing
+        setTimeout(() => {
+          setCurrentText(currentFullText.substring(0, currentText.length + 1));
+        }, 100);
       } else {
-        setCurrentText(prev => {
-          const newText = currentFullText.substring(0, prev.length + 1);
-          if (newText === currentFullText) {
-            setTimeout(() => setIsDeleting(true), pauseTime);
-          }
-          return newText;
-        });
+        // Finished typing, wait then move to next word
+        setTimeout(() => {
+          setCurrentIndex((prev) => (prev + 1) % texts.length);
+          setCurrentText('');
+        }, 2000);
       }
     };
 
-    const timer = setTimeout(typeText, isDeleting ? deleteSpeed : typeSpeed);
+    const timer = setTimeout(typeText, 100);
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentIndex, texts]);
+  }, [currentText, currentIndex, texts]);
 
   const socialLinks = [
     {
@@ -149,7 +138,7 @@ const Hero = () => {
                 A{' '}
                 <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent">
                   <span className="inline-block">
-                    {currentText}
+                    {currentText || texts[currentIndex]}
                     <motion.span
                       animate={{ opacity: [1, 0] }}
                       transition={{ duration: 0.8, repeat: Infinity }}
