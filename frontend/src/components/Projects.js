@@ -11,37 +11,37 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "E-Commerce Website",
-      description: "An elegant, full-stack clothing store with cart, payments, and admin panel. Because everyone needs more carts in life.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
+      title: "Gym Website",
+      description: "A modern, responsive gym website with membership plans, trainer profiles, and class scheduling. Built with React and modern web technologies.",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      technologies: ["React", "Tailwind CSS", "JavaScript", "Responsive Design"],
       liveUrl: "https://gym-rho-beryl.vercel.app/",
       githubUrl: "https://github.com/zahidSkywalker/gym-website",
-      category: "Full Stack"
+      category: "Frontend"
     },
     {
-      title: "AI Art Generator (Zephyrus)",
-      description: "A platform that makes robots paint like Picasso. When AI meets creativity, sparks fly ✨.",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      technologies: ["React", "Python", "AI/ML", "OpenAI", "Tailwind"],
+      title: "Savoria Restaurant",
+      description: "An elegant restaurant website showcasing menu, reservations, and dining experience. Modern design with smooth animations.",
+      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      technologies: ["React", "CSS3", "JavaScript", "Responsive Design"],
       liveUrl: "https://savoria-sable.vercel.app/",
       githubUrl: "https://github.com/zahidSkywalker/savoria-restaurant",
-      category: "AI/ML"
+      category: "Frontend"
     },
     {
-      title: "Primrose AI Chatbot",
-      description: "A loving, funny chatbot that talks like a real human. Code + Emotions = Primrose ❤️.",
-      image: "https://images.unsplash.com/photo-1676299251950-8d9b1e5c1c1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      technologies: ["React", "Node.js", "OpenAI", "Socket.io", "Express"],
+      title: "Cafe Website",
+      description: "A cozy cafe website with menu display, online ordering, and warm atmosphere design. Perfect blend of functionality and aesthetics.",
+      image: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      technologies: ["React", "CSS3", "JavaScript", "Responsive Design"],
       liveUrl: "https://cafe-dusky-three.vercel.app/",
       githubUrl: "https://github.com/zahidSkywalker/cafe-website",
-      category: "AI/ML"
+      category: "Frontend"
     },
     {
-      title: "3D Animated Short",
-      description: "Made with Blender & VFX. Because sometimes code needs a little drama.",
+      title: "3D Portfolio Showcase",
+      description: "A collection of my 3D modeling and animation work created with Blender. Showcasing character design, environment modeling, and visual effects.",
       image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80",
-      technologies: ["Blender", "VFX", "Animation", "3D Modeling", "Compositing"],
+      technologies: ["Blender", "3D Modeling", "Animation", "VFX", "Compositing"],
       liveUrl: "#",
       githubUrl: "#",
       category: "3D/Creative"
