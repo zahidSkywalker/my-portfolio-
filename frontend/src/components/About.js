@@ -145,28 +145,60 @@ const About = () => {
               Experience & Achievements 🏆
             </h3>
             
-            <div className="grid gap-6">
+            <motion.div 
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              variants={containerVariants}
+              className="grid gap-6"
+            >
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={achievement.title}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  transition={{ delay: index * 0.2, duration: 0.8, ease: "easeOut" }}
+                  variants={{
+                    hidden: { opacity: 0, x: index % 2 === 0 ? -100 : 100 },
+                    visible: { 
+                      opacity: 1, 
+                      x: 0,
+                      transition: {
+                        duration: 0.8,
+                        ease: "easeOut",
+                        delay: index * 0.2
+                      }
+                    }
+                  }}
                   className="bg-white dark:bg-dark-700 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-dark-600 hover:shadow-xl transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <motion.div 
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                      transition={{ delay: index * 0.2 + 0.3, duration: 0.5, type: "spring" }}
+                      variants={{
+                        hidden: { opacity: 0, scale: 0 },
+                        visible: { 
+                          opacity: 1, 
+                          scale: 1,
+                          transition: {
+                            duration: 0.5,
+                            type: "spring",
+                            delay: index * 0.2 + 0.3
+                          }
+                        }
+                      }}
                       className={`p-3 rounded-lg bg-gray-100 dark:bg-dark-600 ${achievement.color}`}
                     >
                       <achievement.icon className="w-6 h-6" />
                     </motion.div>
                     <motion.div 
-                      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                      transition={{ delay: index * 0.2 + 0.1, duration: 0.6, ease: "easeOut" }}
+                      variants={{
+                        hidden: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
+                        visible: { 
+                          opacity: 1, 
+                          x: 0,
+                          transition: {
+                            duration: 0.6,
+                            ease: "easeOut",
+                            delay: index * 0.2 + 0.1
+                          }
+                        }
+                      }}
                       className="flex-1"
                     >
                       <h4 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">
@@ -179,7 +211,7 @@ const About = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* Call to Action */}
             <motion.div
