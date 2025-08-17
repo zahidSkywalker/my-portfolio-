@@ -177,7 +177,7 @@ const Hero = () => {
                       transition: { duration: 0.3 }
                     }}
                     className={`bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group ${
-                      skill.size === 'small' ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-10 h-10 sm:w-12 sm:h-12'
+                      skill.size === 'small' ? 'w-10 h-10 sm:w-12 sm:h-12' : 'w-12 h-12 sm:w-14 sm:h-14'
                     }`}
                     title={skill.name}
                   >
@@ -194,7 +194,7 @@ const Hero = () => {
                         ease: "easeInOut",
                         delay: skill.delay * 0.2
                       }}
-                      className={`${skill.size === 'small' ? 'text-sm sm:text-base' : 'text-base sm:text-lg'} relative z-10`}
+                                              className={`${skill.size === 'small' ? 'text-base sm:text-lg' : 'text-lg sm:text-xl'} relative z-10`}
                       style={{ color: skill.color }}
                     >
                       <skill.icon />

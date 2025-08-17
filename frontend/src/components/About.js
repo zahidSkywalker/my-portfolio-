@@ -149,23 +149,33 @@ const About = () => {
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={achievement.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  transition={{ delay: index * 0.2, duration: 0.8, ease: "easeOut" }}
                   className="bg-white dark:bg-dark-700 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-dark-600 hover:shadow-xl transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`p-3 rounded-lg bg-gray-100 dark:bg-dark-600 ${achievement.color}`}>
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                      transition={{ delay: index * 0.2 + 0.3, duration: 0.5, type: "spring" }}
+                      className={`p-3 rounded-lg bg-gray-100 dark:bg-dark-600 ${achievement.color}`}
+                    >
                       <achievement.icon className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
+                    </motion.div>
+                    <motion.div 
+                      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                      transition={{ delay: index * 0.2 + 0.1, duration: 0.6, ease: "easeOut" }}
+                      className="flex-1"
+                    >
                       <h4 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">
                         {achievement.title}
                       </h4>
                       <p className="text-gray-600 dark:text-gray-300">
                         {achievement.description}
                       </p>
-                    </div>
+                    </motion.div>
                   </div>
                 </motion.div>
               ))}
