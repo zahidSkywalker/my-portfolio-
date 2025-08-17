@@ -284,11 +284,11 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>
                 </div>
                 
-                {/* Animated Skill Icon Bubbles - Circling Around */}
+                {/* Animated Skill Icon Bubbles - Around Photo Ring */}
                 {skillIcons.map((skill, index) => {
                   const totalIcons = skillIcons.length;
                   const angle = (index / totalIcons) * 360; // Distribute evenly in a circle
-                  const radius = 140; // Distance from center
+                  const radius = 200; // Distance from center - around the photo ring
                   const x = Math.cos((angle * Math.PI) / 180) * radius;
                   const y = Math.sin((angle * Math.PI) / 180) * radius;
                   
@@ -319,6 +319,22 @@ const Hero = () => {
                       }}
                       title={skill.name}
                     >
+                      {/* Pulsing Ring Effect */}
+                      <motion.div
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          opacity: [0.3, 0.8, 0.3]
+                        }}
+                        transition={{ 
+                          duration: 2, 
+                          repeat: Infinity, 
+                          ease: "easeInOut",
+                          delay: skill.delay * 0.5
+                        }}
+                        className="absolute inset-0 rounded-full border-2"
+                        style={{ borderColor: skill.color }}
+                      />
+                      
                       <motion.div
                         animate={{ 
                           rotate: [0, 360],
@@ -328,7 +344,7 @@ const Hero = () => {
                           rotate: { duration: skill.rotationSpeed, repeat: Infinity, ease: "linear" },
                           scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
                         }}
-                        className={skill.size === 'small' ? 'text-sm' : 'text-lg'}
+                        className={`${skill.size === 'small' ? 'text-sm' : 'text-lg'} relative z-10`}
                         style={{ color: skill.color }}
                       >
                         <skill.icon />
@@ -338,7 +354,7 @@ const Hero = () => {
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         whileHover={{ opacity: 1, y: 0 }}
-                        className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                        className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20"
                       >
                         {skill.name}
                       </motion.div>
