@@ -284,59 +284,67 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>
                 </div>
                 
-                {/* Animated Skill Icon Bubbles */}
-                {skillIcons.map((skill, index) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ 
-                      delay: skill.delay, 
-                      duration: 0.8, 
-                      type: "spring",
-                      stiffness: 200
-                    }}
-                    whileHover={{ 
-                      scale: 1.3, 
-                      rotate: 360,
-                      transition: { duration: 0.3 }
-                    }}
-                    className={`absolute bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group ${
-                      skill.size === 'small' ? 'w-8 h-8' : 'w-10 h-10'
-                    }`}
-                    style={{
-                      top: `${15 + (index % 5) * 12}%`,
-                      left: index % 3 === 0 ? '-15px' : index % 3 === 1 ? 'auto' : '-25px',
-                      right: index % 3 === 1 ? '-15px' : 'auto',
-                      zIndex: 10
-                    }}
-                    title={skill.name}
-                  >
+                {/* Animated Skill Icon Bubbles - Circling Around */}
+                {skillIcons.map((skill, index) => {
+                  const totalIcons = skillIcons.length;
+                  const angle = (index / totalIcons) * 360; // Distribute evenly in a circle
+                  const radius = 140; // Distance from center
+                  const x = Math.cos((angle * Math.PI) / 180) * radius;
+                  const y = Math.sin((angle * Math.PI) / 180) * radius;
+                  
+                  return (
                     <motion.div
-                      animate={{ 
-                        rotate: [0, 360],
-                        scale: [1, 1.1, 1]
-                      }}
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
                       transition={{ 
-                        rotate: { duration: skill.rotationSpeed, repeat: Infinity, ease: "linear" },
-                        scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                        delay: skill.delay, 
+                        duration: 0.8, 
+                        type: "spring",
+                        stiffness: 200
                       }}
-                      className={skill.size === 'small' ? 'text-sm' : 'text-lg'}
-                      style={{ color: skill.color }}
+                      whileHover={{ 
+                        scale: 1.3, 
+                        rotate: 360,
+                        transition: { duration: 0.3 }
+                      }}
+                      className={`absolute bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group ${
+                        skill.size === 'small' ? 'w-8 h-8' : 'w-10 h-10'
+                      }`}
+                      style={{
+                        left: `calc(50% + ${x}px)`,
+                        top: `calc(50% + ${y}px)`,
+                        transform: 'translate(-50%, -50%)',
+                        zIndex: 10
+                      }}
+                      title={skill.name}
                     >
-                      <skill.icon />
+                      <motion.div
+                        animate={{ 
+                          rotate: [0, 360],
+                          scale: [1, 1.1, 1]
+                        }}
+                        transition={{ 
+                          rotate: { duration: skill.rotationSpeed, repeat: Infinity, ease: "linear" },
+                          scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                        }}
+                        className={skill.size === 'small' ? 'text-sm' : 'text-lg'}
+                        style={{ color: skill.color }}
+                      >
+                        <skill.icon />
+                      </motion.div>
+                      
+                      {/* Tooltip */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileHover={{ opacity: 1, y: 0 }}
+                        className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      >
+                        {skill.name}
+                      </motion.div>
                     </motion.div>
-                    
-                    {/* Tooltip */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                      className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                    >
-                      {skill.name}
-                    </motion.div>
-                  </motion.div>
-                ))}
+                  );
+                })}
               </div>
             </motion.div>
           </motion.div>
