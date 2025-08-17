@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
@@ -20,9 +20,29 @@ import {
   SiFigma,
   SiAdobeaftereffects
 } from 'react-icons/si';
+import { AnimatePresence } from 'framer-motion';
 
 // Modern Hero component with animated skill bubbles
 const Hero = () => {
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  
+  const morphingTitles = [
+    "ZAHIDUL ISLAM",
+    "A MERN Stack Developer",
+    "A 3D Visual Animator", 
+    "A VFX Artist",
+    "A Creative Developer",
+    "A Problem Solver"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTitleIndex((prev) => (prev + 1) % morphingTitles.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const socialLinks = [
     {
       name: 'GitHub',
@@ -171,54 +191,24 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 200 }}
-                  className="text-2xl font-bold text-white dark:text-white tracking-wider bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent relative"
+                  className="text-2xl font-bold text-white dark:text-white tracking-wider bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent"
                   style={{
                     textShadow: '0 0 20px rgba(14, 165, 233, 0.5)',
                     filter: 'drop-shadow(0 0 10px rgba(14, 165, 233, 0.3))'
                   }}
                 >
-                  <span className="relative">
-                    ZAHIDUL ISLAM
-                    {/* Glitch Effect */}
+                  <AnimatePresence mode="wait">
                     <motion.span
-                      animate={{ 
-                        x: [0, -2, 2, 0],
-                        opacity: [1, 0.8, 1, 0.9, 1]
-                      }}
-                      transition={{ 
-                        duration: 0.3, 
-                        repeat: Infinity, 
-                        ease: "easeInOut",
-                        delay: 2
-                      }}
-                      className="absolute inset-0 text-red-400 opacity-80"
-                      style={{ 
-                        clipPath: 'polygon(0 0, 100% 0, 100% 45%, 0 45%)',
-                        transform: 'translate(-1px, -1px)'
-                      }}
+                      key={currentTitleIndex}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="inline-block"
                     >
-                      ZAHIDUL ISLAM
+                      {morphingTitles[currentTitleIndex]}
                     </motion.span>
-                    <motion.span
-                      animate={{ 
-                        x: [0, 2, -2, 0],
-                        opacity: [1, 0.7, 1, 0.8, 1]
-                      }}
-                      transition={{ 
-                        duration: 0.4, 
-                        repeat: Infinity, 
-                        ease: "easeInOut",
-                        delay: 2.5
-                      }}
-                      className="absolute inset-0 text-blue-400 opacity-80"
-                      style={{ 
-                        clipPath: 'polygon(0 55%, 100% 55%, 100% 100%, 0 100%)',
-                        transform: 'translate(1px, 1px)'
-                      }}
-                    >
-                      ZAHIDUL ISLAM
-                    </motion.span>
-                  </span>
+                  </AnimatePresence>
                 </motion.span>
               </motion.p>
               
@@ -272,6 +262,7 @@ const Hero = () => {
                       skill.size === 'small' ? 'w-10 h-10 sm:w-12 sm:h-12' : 'w-12 h-12 sm:w-14 sm:h-14'
                     }`}
                     title={skill.name}
+                    style={{ transformStyle: 'preserve-3d' }}
                   >
                     {/* Random Pulsing/Jiggly Effect */}
                     <motion.div
