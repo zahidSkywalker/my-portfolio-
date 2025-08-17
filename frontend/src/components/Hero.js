@@ -153,6 +153,64 @@ const Hero = () => {
               >
                 I code apps, design experiences, and sometimes break the internet (don't worry, I fix it too).
               </motion.p>
+              
+              {/* Skill Icons Under Description */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-6"
+              >
+                {skillIcons.map((skill, index) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ 
+                      delay: skill.delay, 
+                      duration: 0.8, 
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                    whileHover={{ 
+                      scale: 1.2, 
+                      transition: { duration: 0.3 }
+                    }}
+                    className={`bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group ${
+                      skill.size === 'small' ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-10 h-10 sm:w-12 sm:h-12'
+                    }`}
+                    title={skill.name}
+                  >
+                    {/* Random Pulsing/Jiggly Effect */}
+                    <motion.div
+                      animate={{ 
+                        scale: [1, 1.1, 0.95, 1.05, 1],
+                        y: [0, -2, 2, -1, 0],
+                        rotate: [0, 2, -1, 1, 0]
+                      }}
+                      transition={{ 
+                        duration: 2 + (index * 0.3), 
+                        repeat: Infinity, 
+                        ease: "easeInOut",
+                        delay: skill.delay * 0.2
+                      }}
+                      className={`${skill.size === 'small' ? 'text-sm sm:text-base' : 'text-base sm:text-lg'} relative z-10`}
+                      style={{ color: skill.color }}
+                    >
+                      <skill.icon />
+                    </motion.div>
+                    
+                    {/* Tooltip */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileHover={{ opacity: 1, y: 0 }}
+                      className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20"
+                    >
+                      {skill.name}
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
 
             <motion.div
@@ -284,61 +342,7 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>
                 </div>
                 
-                {/* Skill Icons Zigzag - Under Photo Ring */}
-                <div className="absolute -bottom-20 sm:-bottom-24 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-3 sm:gap-4 max-w-full px-4">
-                  {skillIcons.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ 
-                        delay: skill.delay, 
-                        duration: 0.8, 
-                        type: "spring",
-                        stiffness: 200
-                      }}
-                      whileHover={{ 
-                        scale: 1.2, 
-                        transition: { duration: 0.3 }
-                      }}
-                      className={`bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group ${
-                        skill.size === 'small' ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-10 h-10 sm:w-12 sm:h-12'
-                      }`}
-                      style={{
-                        transform: `translateY(${index % 2 === 0 ? '0px' : '8px'})`
-                      }}
-                      title={skill.name}
-                    >
-                      {/* Random Pulsing/Jiggly Effect */}
-                      <motion.div
-                        animate={{ 
-                          scale: [1, 1.1, 0.95, 1.05, 1],
-                          y: [0, -2, 2, -1, 0],
-                          rotate: [0, 2, -1, 1, 0]
-                        }}
-                        transition={{ 
-                          duration: 2 + (index * 0.3), 
-                          repeat: Infinity, 
-                          ease: "easeInOut",
-                          delay: skill.delay * 0.2
-                        }}
-                        className={`${skill.size === 'small' ? 'text-sm sm:text-base' : 'text-base sm:text-lg'} relative z-10`}
-                        style={{ color: skill.color }}
-                      >
-                        <skill.icon />
-                      </motion.div>
-                      
-                      {/* Tooltip */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileHover={{ opacity: 1, y: 0 }}
-                        className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20"
-                      >
-                        {skill.name}
-                      </motion.div>
-                    </motion.div>
-                  ))}
-                </div>
+
               </div>
             </motion.div>
           </motion.div>
