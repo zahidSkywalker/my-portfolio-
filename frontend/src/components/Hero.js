@@ -146,7 +146,7 @@ const Hero = () => {
                   }}
                   className="inline-block text-2xl font-bold text-primary-500"
                 >
-                  &lt;/&gt;
+                  &lt;/&gt; 🚀
                 </motion.span>
               </motion.p>
               
@@ -159,7 +159,7 @@ const Hero = () => {
                 A{' '}
                 <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent">
                   <span className="inline-block">
-                    {currentText || texts[currentIndex]}
+                    {currentText || texts[currentIndex] || "MERN Stack Developer"}
                     <motion.span
                       animate={{ opacity: [1, 0] }}
                       transition={{ duration: 0.8, repeat: Infinity }}
@@ -167,6 +167,7 @@ const Hero = () => {
                     />
                   </span>
                 </span>
+                {' '}🔥
               </motion.h1>
               
               {/* Debug text to ensure something shows */}
@@ -174,9 +175,9 @@ const Hero = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
-                className="text-sm text-gray-400 mt-2"
+                className="text-sm text-red-500 mt-2 font-bold"
               >
-                Current: "{currentText}" | Index: {currentIndex} | Full: "{texts[currentIndex]}"
+                🔥 DEBUG: Current: "{currentText}" | Index: {currentIndex} | Full: "{texts[currentIndex]}"
               </motion.div>
               
               <motion.p 
