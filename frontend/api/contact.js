@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   console.log('=== API ENDPOINT CALLED ===');
@@ -61,8 +61,11 @@ export default async function handler(req, res) {
     }
 
     console.log('Creating email transporter...');
-    // Create transporter
-    const transporter = nodemailer.createTransporter({
+    console.log('Nodemailer object:', typeof nodemailer);
+    console.log('Nodemailer methods:', Object.keys(nodemailer));
+    
+    // Create transporter using the correct method
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
