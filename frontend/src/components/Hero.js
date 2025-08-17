@@ -172,25 +172,88 @@ const Hero = () => {
                 {' '}🔥
               </motion.h1>
               
-              {/* Typewriter animation status */}
+              {/* Cool animated description with floating elements */}
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                className="text-sm text-primary-400 mt-2 font-medium"
-              >
-                ✨ Currently typing: {texts[currentIndex]}
-              </motion.div>
-              
-              <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
-                className="text-xl text-white dark:text-white leading-relaxed font-medium"
-                style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)' }}
+                className="relative"
               >
-                I code apps, design experiences, and sometimes break the internet (don't worry, I fix it too 😅).
-              </motion.p>
+                <motion.p 
+                  className="text-xl text-white dark:text-white leading-relaxed font-medium relative z-10"
+                  style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)' }}
+                >
+                  I code apps, design experiences, and sometimes break the internet (don't worry, I fix it too 😅).
+                </motion.p>
+                
+                {/* Floating code elements */}
+                <motion.div
+                  animate={{ 
+                    y: [0, -10, 0],
+                    rotate: [0, 5, 0],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="absolute -top-2 -left-4 text-primary-400 text-lg font-mono"
+                >
+                  &lt;/&gt;
+                </motion.div>
+                
+                <motion.div
+                  animate={{ 
+                    y: [0, 8, 0],
+                    rotate: [0, -8, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                  className="absolute -bottom-1 -right-6 text-purple-400 text-lg font-mono"
+                >
+                  {`{}`}
+                </motion.div>
+                
+                <motion.div
+                  animate={{ 
+                    y: [0, -5, 0],
+                    x: [0, 3, 0],
+                    scale: [1, 1.08, 1]
+                  }}
+                  transition={{ 
+                    duration: 3.5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: 2
+                  }}
+                  className="absolute top-1/2 -right-12 text-yellow-400 text-sm font-mono"
+                >
+                  []
+                </motion.div>
+                
+                <motion.div
+                  animate={{ 
+                    y: [0, 6, 0],
+                    x: [0, -2, 0],
+                    scale: [1, 1.06, 1]
+                  }}
+                  transition={{ 
+                    duration: 4.5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: 0.5
+                  }}
+                  className="absolute top-1/3 -left-8 text-green-400 text-sm font-mono"
+                >
+                  ()
+                </motion.div>
+              </motion.div>
             </motion.div>
 
             <motion.div
