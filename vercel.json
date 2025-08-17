@@ -7,32 +7,16 @@
       "config": {
         "distDir": "build"
       }
-    },
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
     },
     {
-      "src": "/static/(.*)",
-      "dest": "/build/static/$1"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "/build/favicon.ico"
-    },
-    {
-      "src": "/manifest.json",
-      "dest": "/build/manifest.json"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/build/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
