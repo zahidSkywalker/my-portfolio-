@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Zahidul Islam's Portfolio - MERN Stack Developer & 3D Artist",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "cd frontend && npm start",
     "build": "cd frontend && npm run build",
