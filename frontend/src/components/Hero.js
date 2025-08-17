@@ -52,22 +52,21 @@ const Hero = () => {
   ];
 
   const skillIcons = [
-    { icon: SiReact, name: 'React', color: '#61DAFB', delay: 0 },
-    { icon: SiMongodb, name: 'MongoDB', color: '#47A248', delay: 0.5 },
-    { icon: SiExpress, name: 'Express', color: '#000000', delay: 1 },
-    { icon: SiNodedotjs, name: 'Node.js', color: '#339933', delay: 1.5 },
-    { icon: SiHtml5, name: 'HTML5', color: '#E34F26', delay: 2 },
-    { icon: SiCss3, name: 'CSS3', color: '#1572B6', delay: 2.5 },
-    { icon: SiTailwindcss, name: 'Tailwind', color: '#06B6D4', delay: 3 },
-    { icon: SiDjango, name: 'Django', color: '#092E20', delay: 3.5 },
-    { icon: SiJavascript, name: 'JavaScript', color: '#F7DF1E', delay: 4 },
-    { icon: SiPython, name: 'Python', color: '#3776AB', delay: 4.5 },
-    { icon: SiGit, name: 'Git', color: '#F05032', delay: 5 },
-    { icon: SiVercel, name: 'Vercel', color: '#000000', delay: 5.5 },
-    { icon: SiFigma, name: 'Figma', color: '#F24E1E', delay: 6 },
-    { icon: SiBlender, name: 'Blender', color: '#F5792A', delay: 6.5 },
-    { icon: SiAdobephotoshop, name: 'Photoshop', color: '#31A8FF', delay: 7 },
-    { icon: SiAdobeaftereffects, name: 'After Effects', color: '#9999FF', delay: 7.5 }
+    { icon: SiReact, name: 'React', color: '#61DAFB', delay: 0, size: 'medium', rotationSpeed: 15 },
+    { icon: SiMongodb, name: 'MongoDB', color: '#47A248', delay: 0.5, size: 'small', rotationSpeed: 20 },
+    { icon: SiExpress, name: 'Express', color: '#000000', delay: 1, size: 'medium', rotationSpeed: 12 },
+    { icon: SiNodedotjs, name: 'Node.js', color: '#339933', delay: 1.5, size: 'small', rotationSpeed: 18 },
+    { icon: SiHtml5, name: 'HTML5', color: '#E34F26', delay: 2, size: 'medium', rotationSpeed: 14 },
+    { icon: SiCss3, name: 'CSS3', color: '#1572B6', delay: 2.5, size: 'small', rotationSpeed: 22 },
+    { icon: SiTailwindcss, name: 'Tailwind', color: '#06B6D4', delay: 3, size: 'medium', rotationSpeed: 16 },
+    { icon: SiDjango, name: 'Django', color: '#092E20', delay: 3.5, size: 'small', rotationSpeed: 19 },
+    { icon: SiJavascript, name: 'JavaScript', color: '#F7DF1E', delay: 4, size: 'medium', rotationSpeed: 13 },
+    { icon: SiPython, name: 'Python', color: '#3776AB', delay: 4.5, size: 'small', rotationSpeed: 21 },
+    { icon: SiGit, name: 'Git', color: '#F05032', delay: 5, size: 'medium', rotationSpeed: 17 },
+    { icon: SiVercel, name: 'Vercel', color: '#000000', delay: 5.5, size: 'small', rotationSpeed: 23 },
+    { icon: SiFigma, name: 'Figma', color: '#F24E1E', delay: 6, size: 'medium', rotationSpeed: 11 },
+    { icon: SiBlender, name: 'Blender', color: '#F5792A', delay: 6.5, size: 'small', rotationSpeed: 24 },
+    { icon: SiAdobeaftereffects, name: 'After Effects', color: '#9999FF', delay: 7, size: 'medium', rotationSpeed: 10 },
   ];
 
   return (
@@ -141,7 +140,7 @@ const Hero = () => {
               >
                 A{' '}
                 <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent">
-                  MERN Stack Developer
+                  MERN Stack Developer & 3D Visual Animator
                 </span>
               </motion.h1>
               
@@ -298,15 +297,17 @@ const Hero = () => {
                       stiffness: 200
                     }}
                     whileHover={{ 
-                      scale: 1.2, 
+                      scale: 1.3, 
                       rotate: 360,
                       transition: { duration: 0.3 }
                     }}
-                    className="absolute w-12 h-12 bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group"
+                    className={`absolute bg-white dark:bg-dark-700 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-dark-600 cursor-pointer group ${
+                      skill.size === 'small' ? 'w-8 h-8' : 'w-10 h-10'
+                    }`}
                     style={{
-                      top: `${20 + (index % 4) * 15}%`,
-                      left: index % 2 === 0 ? '-20px' : 'auto',
-                      right: index % 2 === 1 ? '-20px' : 'auto',
+                      top: `${15 + (index % 5) * 12}%`,
+                      left: index % 3 === 0 ? '-15px' : index % 3 === 1 ? 'auto' : '-25px',
+                      right: index % 3 === 1 ? '-15px' : 'auto',
                       zIndex: 10
                     }}
                     title={skill.name}
@@ -317,10 +318,10 @@ const Hero = () => {
                         scale: [1, 1.1, 1]
                       }}
                       transition={{ 
-                        rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                        rotate: { duration: skill.rotationSpeed, repeat: Infinity, ease: "linear" },
                         scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
                       }}
-                      className="text-xl"
+                      className={skill.size === 'small' ? 'text-sm' : 'text-lg'}
                       style={{ color: skill.color }}
                     >
                       <skill.icon />
