@@ -416,10 +416,10 @@ const Hero = () => {
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary-200 dark:border-primary-800 shadow-2xl">
                   <img
                     src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1755423286/IMG_8802_m9ge9g.jpg"
-                    alt="zahidSkywalker"
+                    alt="Zahidul Islam"
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     onError={(e) => {
-                                              e.target.src = 'https://via.placeholder.com/400x400/0ea5e9/ffffff?text=zahidSkywalker';
+                                              e.target.src = 'https://via.placeholder.com/400x400/0ea5e9/ffffff?text=Zahidul+Islam';
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>

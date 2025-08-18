@@ -34,7 +34,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 # Create a script to start the application
 RUN echo '#!/bin/sh\n\
-echo "Starting zahidSkywalker Portfolio..."\n\
+echo "Starting Zahidul Islam Portfolio..."\n\
 echo "Portfolio will be available at: http://localhost:3000"\n\
 echo "To access from other devices, use your computer IP address"\n\
 cd frontend && serve -s build -l 3000' > /app/start.sh

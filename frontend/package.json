@@ -1,5 +1,5 @@
 {
-  "name": "zahidSkywalker-portfolio-frontend",
+  "name": "zahidul-portfolio-frontend",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -46,7 +46,7 @@
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2"
   },
-  "author": "zahidSkywalker",
+  "author": "Zahidul Islam",
   "license": "MIT",
   "repository": {
     "type": "git",

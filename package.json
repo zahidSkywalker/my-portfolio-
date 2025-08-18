@@ -1,7 +1,7 @@
 {
-  "name": "zahidSkywalker-portfolio",
+  "name": "zahidul-portfolio",
   "version": "1.0.0",
-  "description": "zahidSkywalker's Portfolio - MERN Stack Developer & 3D Artist",
+  "description": "Zahidul Islam's Portfolio - MERN Stack Developer & 3D Artist",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -11,7 +11,7 @@
     "vercel-build": "cd frontend && npm run build"
   },
   "keywords": ["portfolio", "mern", "react", "node", "mongodb", "zahidul-islam", "3d-animator"],
-  "author": "zahidSkywalker",
+  "author": "Zahidul Islam",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  zahidSkywalker-portfolio:
+  zahidul-portfolio:
     build: .
-    container_name: zahidSkywalker-portfolio
+    container_name: zahidul-portfolio
     ports:
       - "3000:3000"
     environment:
@@ -16,7 +16,7 @@ services:
   # Optional: Add a reverse proxy with nginx for production
   nginx:
     image: nginx:alpine
-    container_name: zahidSkywalker-portfolio-nginx
+    container_name: zahidul-portfolio-nginx
     ports:
       - "80:80"
       - "443:443"
@@ -24,7 +24,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./ssl:/etc/nginx/ssl:ro
     depends_on:
-      - zahidSkywalker-portfolio
+      - zahidul-portfolio
     restart: unless-stopped
     networks:
       - portfolio-network

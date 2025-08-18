@@ -1,4 +1,4 @@
-# zahidSkywalker - Portfolio Website
+# Zahidul Islam - Portfolio Website
 
 A modern, fully responsive portfolio website built with React, Tailwind CSS, and Framer Motion, deployed entirely on Vercel with serverless functions.
 
@@ -244,7 +244,7 @@ If you need help with deployment or have questions:
 
 ---
 
-**Built with ❤️ by zahidSkywalker**
+**Built with ❤️ by Zahidul Islam**
 
 For questions or support, reach out at: ionzahid0987@gmail.com
 
@@ -252,7 +252,7 @@ For questions or support, reach out at: ionzahid0987@gmail.com
 
 ## 👨‍💻 Author
 
-**zahidSkywalker**
+**Zahidul Islam**
 - GitHub: [@zahidSkywalker](https://github.com/zahidSkywalker)
 - LinkedIn: [zahidSkywalker](https://linkedin.com/in/zahidul-islam)
 - Email: ionzahid0987@gmail.com
