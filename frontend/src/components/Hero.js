@@ -27,7 +27,7 @@ const Hero = () => {
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   
   const morphingTitles = [
-    "ZAHIDSKYWALKER",
+    "Zahidul Islam",
     "A MERN Stack Developer",
     "A 3D Visual Animator", 
     "A VFX Artist",
