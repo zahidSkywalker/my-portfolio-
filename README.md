@@ -1,4 +1,4 @@
-# Zahidul Islam - Portfolio Website
+# zahidSkywalker - Portfolio Website
 
 A modern, fully responsive portfolio website built with React, Tailwind CSS, and Framer Motion, deployed entirely on Vercel with serverless functions.
 
@@ -21,6 +21,12 @@ A modern, fully responsive portfolio website built with React, Tailwind CSS, and
 - **Auto-reply emails** to form submitters
 - **Input validation** and error handling
 - **Professional email templates**
+
+### Docker Support
+- **Multi-stage Docker build** for optimized production images
+- **Docker Compose** for easy local development
+- **Nginx reverse proxy** for production deployment
+- **Health checks** and proper container orchestration
 
 ### Sections
 - 🏠 **Hero Section** - Introduction with animated profile image
@@ -81,6 +87,34 @@ A modern, fully responsive portfolio website built with React, Tailwind CSS, and
 
 5. **Access the application**
    - Frontend: http://localhost:3000
+
+## 🐳 Docker Deployment
+
+### Quick Start with Docker
+
+1. **Build and run with Docker Compose**
+   ```bash
+   ./docker-test.sh
+   ```
+
+2. **Or manually:**
+   ```bash
+   # Build the image
+   docker-compose build
+   
+   # Start the containers
+   docker-compose up -d
+   
+   # View logs
+   docker-compose logs -f
+   
+   # Stop containers
+   docker-compose down
+   ```
+
+3. **Access the application**
+   - Portfolio: http://localhost:3000
+   - With Nginx (production): http://localhost:80
 
 ## 🚀 Deployment
 

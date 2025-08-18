@@ -28,9 +28,13 @@ EXPOSE 3000
 ENV NODE_ENV=production
 ENV PORT=3000
 
+# Add health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
+
 # Create a script to start the application
 RUN echo '#!/bin/sh\n\
-echo "Starting Zahidul Portfolio..."\n\
+echo "Starting zahidSkywalker Portfolio..."\n\
 echo "Portfolio will be available at: http://localhost:3000"\n\
 echo "To access from other devices, use your computer IP address"\n\
 cd frontend && serve -s build -l 3000' > /app/start.sh
