@@ -1,4 +1,4 @@
-# 🚀 Complete Deployment Guide - Zahidul Islam Portfolio
+# 🚀 Complete Deployment Guide - zahidSkywalker Portfolio
 
 This guide will walk you through deploying your portfolio website to production.
 
@@ -242,6 +242,6 @@ Your portfolio is now live and ready to impress potential clients and employers!
 
 ---
 
-**Built with ❤️ by Zahidul Islam**
+**Built with ❤️ by zahidSkywalker**
 
 For questions or support: ionzahid0987@gmail.com

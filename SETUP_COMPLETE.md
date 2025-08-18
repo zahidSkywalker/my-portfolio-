@@ -1,6 +1,6 @@
 # ✅ Portfolio Setup Complete!
 
-Your Zahidul Islam portfolio website has been successfully created and is ready for deployment!
+Your zahidSkywalker portfolio website has been successfully created and is ready for deployment!
 
 ## 🎉 What's Been Completed
 

@@ -35,20 +35,20 @@ function App() {
         isDark ? 'dark bg-dark-900 text-white' : 'bg-gray-50 text-gray-900'
       }`}>
         <Helmet>
-          <title>Zahidul Islam - Portfolio</title>
+          <title>zahidSkywalker - Portfolio</title>
           <meta name="description" content="MERN Stack Developer, Django enthusiast, and 3D Artist. Full-stack web development and creative solutions." />
-          <meta name="keywords" content="Zahidul Islam, MERN Stack, React, Node.js, MongoDB, Django, 3D Artist, Web Developer, Full Stack" />
-          <meta name="author" content="Zahidul Islam" />
+          <meta name="keywords" content="zahidSkywalker, MERN Stack, React, Node.js, MongoDB, Django, 3D Artist, Web Developer, Full Stack" />
+          <meta name="author" content="zahidSkywalker" />
           
           {/* Open Graph */}
-          <meta property="og:title" content="Zahidul Islam - Portfolio" />
+          <meta property="og:title" content="zahidSkywalker - Portfolio" />
           <meta property="og:description" content="MERN Stack Developer, Django enthusiast, and 3D Artist" />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://zahidul-portfolio.vercel.app/" />
           
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Zahidul Islam - Portfolio" />
+          <meta name="twitter:title" content="zahidSkywalker - Portfolio" />
           <meta name="twitter:description" content="MERN Stack Developer, Django enthusiast, and 3D Artist" />
         </Helmet>
 

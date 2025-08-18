@@ -252,9 +252,9 @@ For questions or support, reach out at: ionzahid0987@gmail.com
 
 ## 👨‍💻 Author
 
-**Zahidul Islam (zahidSkywalker)**
+**zahidSkywalker**
 - GitHub: [@zahidSkywalker](https://github.com/zahidSkywalker)
-- LinkedIn: [Zahidul Islam](https://linkedin.com/in/zahidul-islam)
+- LinkedIn: [zahidSkywalker](https://linkedin.com/in/zahidul-islam)
 - Email: ionzahid0987@gmail.com
 
 ⭐ **Star this repository if you found it helpful!**

@@ -64,7 +64,7 @@ const Footer = () => {
             className="text-center md:text-left"
           >
             <h3 className="text-2xl font-bold gradient-text mb-2">
-              Zahidul Islam
+              zahidSkywalker
             </h3>
             <p className="text-gray-400 mb-4">
               MERN Stack Developer, Django enthusiast, and 3D Artist
@@ -143,7 +143,7 @@ const Footer = () => {
           className="text-center"
         >
           <p className="text-gray-400 text-sm">
-            © {currentYear} Zahidul Islam. All rights reserved. Made with{' '}
+            © {currentYear} zahidSkywalker. All rights reserved. Made with{' '}
             <FiHeart className="inline w-4 h-4 text-red-500" />{' '}
             and lots of ☕
           </p>

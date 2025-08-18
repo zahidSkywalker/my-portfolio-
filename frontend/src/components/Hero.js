@@ -27,7 +27,7 @@ const Hero = () => {
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   
   const morphingTitles = [
-    "ZAHIDUL ISLAM",
+    "ZAHIDSKYWALKER",
     "A MERN Stack Developer",
     "A 3D Visual Animator", 
     "A VFX Artist",
@@ -416,10 +416,10 @@ const Hero = () => {
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary-200 dark:border-primary-800 shadow-2xl">
                   <img
                     src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1755423286/IMG_8802_m9ge9g.jpg"
-                    alt="Zahidul Islam"
+                    alt="zahidSkywalker"
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/400x400/0ea5e9/ffffff?text=Zahidul+Islam';
+                                              e.target.src = 'https://via.placeholder.com/400x400/0ea5e9/ffffff?text=zahidSkywalker';
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-full"></div>
