@@ -10,9 +10,14 @@
     "install-all": "npm install && cd frontend && npm install",
     "vercel-build": "cd frontend && npm run build"
   },
-  "keywords": ["portfolio", "mern", "react", "node", "mongodb"],
-  "author": "Zahidul Islam",
+  "keywords": ["portfolio", "mern", "react", "node", "mongodb", "zahidul-islam", "3d-animator"],
+  "author": "zahidSkywalker",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zahidSkywalker/my-portfolio"
+  },
+  "homepage": "https://zahidul-portfolio.vercel.app",
   "devDependencies": {
     "concurrently": "^8.2.2"
   },

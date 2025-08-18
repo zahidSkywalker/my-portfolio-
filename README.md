@@ -210,6 +210,17 @@ If you need help with deployment or have questions:
 
 ---
 
-**Built with ❤️ by Zahidul Islam**
+**Built with ❤️ by zahidSkywalker**
 
 For questions or support, reach out at: ionzahid0987@gmail.com
+
+---
+
+## 👨‍💻 Author
+
+**Zahidul Islam (zahidSkywalker)**
+- GitHub: [@zahidSkywalker](https://github.com/zahidSkywalker)
+- LinkedIn: [Zahidul Islam](https://linkedin.com/in/zahidul-islam)
+- Email: ionzahid0987@gmail.com
+
+⭐ **Star this repository if you found it helpful!**
