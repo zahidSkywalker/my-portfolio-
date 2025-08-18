@@ -41,7 +41,7 @@ const Hero = () => {
     }, 3000); // Change every 3 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [morphingTitles.length]);
 
   const socialLinks = [
     {
