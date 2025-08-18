@@ -143,7 +143,7 @@ const Footer = () => {
           className="text-center"
         >
           <p className="text-gray-400 text-sm">
-            © {currentYear} Zahidul Islam. All rights reserved. Made with{' '}
+            © 2025 Zahidul Islam. All rights reserved. Made with{' '}
             <FiHeart className="inline w-4 h-4 text-red-500" />{' '}
             and lots of ☕
           </p>
