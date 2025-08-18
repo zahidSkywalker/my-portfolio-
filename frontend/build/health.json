@@ -1,0 +1,8 @@
+{
+  "status": "healthy",
+  "service": "zahidul-portfolio",
+  "version": "1.0.0",
+  "timestamp": "2024-08-17T18:00:00.000Z",
+  "uptime": "running",
+  "environment": "production"
+}
