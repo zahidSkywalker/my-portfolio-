@@ -155,30 +155,37 @@ const About = () => {
                 <motion.div
                   key={achievement.title}
                   variants={{
-                    hidden: { opacity: 0, x: index % 2 === 0 ? -100 : 100 },
+                    hidden: { opacity: 0, x: index % 2 === 0 ? -150 : 150, rotateY: index % 2 === 0 ? -12 : 12 },
                     visible: { 
                       opacity: 1, 
                       x: 0,
+                      rotateY: 0,
                       transition: {
-                        duration: 0.8,
+                        duration: 0.9,
                         ease: "easeOut",
-                        delay: index * 0.2
+                        delay: index * 0.15
                       }
                     }
                   }}
-                  className="bg-white dark:bg-dark-700 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-dark-600 hover:shadow-xl transition-all duration-300"
+                  whileHover={{ y: -6, rotateY: index % 2 === 0 ? 6 : -6, scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                  style={{ transformStyle: 'preserve-3d', perspective: 1000 }}
+                  className="bg-white dark:bg-dark-700 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-dark-600 hover:shadow-2xl transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <motion.div 
                       variants={{
-                        hidden: { opacity: 0, scale: 0 },
+                        hidden: { opacity: 0, scale: 0.8, rotateZ: -10 },
                         visible: { 
                           opacity: 1, 
                           scale: 1,
+                          rotateZ: 0,
                           transition: {
-                            duration: 0.5,
+                            duration: 0.6,
                             type: "spring",
-                            delay: index * 0.2 + 0.3
+                            stiffness: 180,
+                            damping: 15,
+                            delay: index * 0.15 + 0.25
                           }
                         }
                       }}
@@ -188,14 +195,14 @@ const About = () => {
                     </motion.div>
                     <motion.div 
                       variants={{
-                        hidden: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
+                        hidden: { opacity: 0, x: index % 2 === 0 ? -70 : 70 },
                         visible: { 
                           opacity: 1, 
                           x: 0,
                           transition: {
-                            duration: 0.6,
+                            duration: 0.7,
                             ease: "easeOut",
-                            delay: index * 0.2 + 0.1
+                            delay: index * 0.15 + 0.15
                           }
                         }
                       }}
