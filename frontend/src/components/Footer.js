@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
-import { FiArrowUp, FiHeart } from 'react-icons/fi';
+import { FiArrowUp } from 'react-icons/fi';
 import { FaWhatsapp, FaFacebookMessenger, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  //
 
   const socialLinks = [
     {
@@ -143,12 +143,7 @@ const Footer = () => {
           className="text-center"
         >
           <p className="text-gray-400 text-sm">
-            © 2025 Zahidul Islam. All rights reserved. Made with{' '}
-            <FiHeart className="inline w-4 h-4 text-red-500" />{' '}
-            and lots of ☕
-          </p>
-          <p className="text-gray-500 text-xs mt-2">
-            Built with React, Node.js, and Framer Motion
+            © 2025 Zahidul Islam. All rights reserved.
           </p>
         </motion.div>
       </div>

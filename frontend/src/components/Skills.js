@@ -127,12 +127,6 @@ const Skills = () => {
     }
   };
 
-  const revealOnceProps = {
-    initial: { opacity: 0, y: 30 },
-    animate: inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 },
-    transition: { duration: 0.6 }
-  };
-
   return (
     <section id="skills" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark-800 dark:to-dark-900 relative overflow-hidden">
       {/* Animated Background Elements */}
@@ -345,7 +339,7 @@ const Skills = () => {
             
             <div className="relative z-10">
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                Always Learning 📚
+                Always Learning
               </h3>
               <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                 Technology evolves rapidly, and so do I! Currently exploring new frameworks, 

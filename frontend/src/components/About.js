@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiCode, FiAward, FiCoffee, FiHeart } from 'react-icons/fi';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -63,6 +65,31 @@ const About = () => {
     transition: { duration: 0.6 }
   };
 
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    if (!cardsRef.current) return;
+    cardsRef.current.forEach((el, index) => {
+      if (!el) return;
+      const fromX = index % 2 === 0 ? -100 : 100;
+      gsap.fromTo(el,
+        { opacity: 0, x: fromX },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    });
+  }, []);
+
   return (
     <section id="about" className="section-padding bg-gray-50 dark:bg-dark-800">
       <div className="container-custom">
@@ -101,7 +128,7 @@ const About = () => {
               <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
                 <p>
                   Now, I build full-stack applications, create 3D art, and explore new technologies every day. 
-                  I believe in writing clean, functional code (with just enough bugs to keep life exciting 🐞).
+                  I believe in writing clean, functional code (and continuously improving it).
                 </p>
                 <p>
                   When I'm not coding, you'll find me experimenting with Blender animations, reading about AI, 
@@ -146,7 +173,7 @@ const About = () => {
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-              Experience & Achievements 🏆
+              Experience & Achievements
             </h3>
             
             <motion.div 
@@ -158,6 +185,7 @@ const About = () => {
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={achievement.title}
+                  ref={(el) => (cardsRef.current[index] = el)}
                   variants={{
                     hidden: { opacity: 0, x: index % 2 === 0 ? -150 : 150, rotateY: index % 2 === 0 ? -12 : 12 },
                     visible: { 
@@ -232,7 +260,7 @@ const About = () => {
               className="bg-gradient-to-r from-primary-500 to-primary-600 p-6 rounded-xl text-white text-center"
             >
               <h4 className="text-xl font-bold mb-2">
-                Ready to Build Something Amazing? 🚀
+                Ready to Build Something Amazing?
               </h4>
               <p className="text-primary-100">
                 Let's collaborate and create something extraordinary together!
