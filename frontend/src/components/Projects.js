@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiExternalLink, FiGithub, FiEye } from 'react-icons/fi';
@@ -69,6 +69,37 @@ const Projects = () => {
     }
   };
 
+  // Card tilt handlers
+  const [tiltStyleByIndex, setTiltStyleByIndex] = useState({});
+
+  const handleMouseMove = (event, index) => {
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const cardWidth = rect.width;
+    const cardHeight = rect.height;
+    const centerX = rect.left + cardWidth / 2;
+    const centerY = rect.top + cardHeight / 2;
+    const posX = event.clientX - centerX;
+    const posY = event.clientY - centerY;
+
+    const rotateX = (+15 * posY) / (cardHeight / 2);
+    const rotateY = (-15 * posX) / (cardWidth / 2);
+
+    setTiltStyleByIndex((prev) => ({
+      ...prev,
+      [index]: {
+        transform: `perspective(800px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(0)`
+      }
+    }));
+  };
+
+  const handleMouseLeave = (index) => {
+    setTiltStyleByIndex((prev) => ({
+      ...prev,
+      [index]: { transform: 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0)' }
+    }));
+  };
+
   return (
     <section id="projects" className="section-padding bg-gray-50 dark:bg-dark-800">
       <div className="container-custom">
@@ -103,7 +134,10 @@ const Projects = () => {
             <motion.div
               key={project.title}
               variants={itemVariants}
-              className="group bg-white dark:bg-dark-700 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-dark-600 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+              onMouseMove={(e) => handleMouseMove(e, index)}
+              onMouseLeave={() => handleMouseLeave(index)}
+              style={tiltStyleByIndex[index]}
+              className="group bg-white dark:bg-dark-700 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-dark-600 hover:shadow-2xl transition-all duration-500 will-change-transform"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden h-64">
@@ -172,6 +206,34 @@ const Projects = () => {
                       {tech}
                     </span>
                   ))}
+                </div>
+
+                {/* Quick Link Pills */}
+                <div className="flex items-center gap-3 mb-4">
+                  {project.liveUrl !== "#" && (
+                    <motion.a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                    >
+                      <FiExternalLink className="w-4 h-4" /> Live
+                    </motion.a>
+                  )}
+                  {project.githubUrl !== "#" && (
+                    <motion.a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm bg-gray-100 text-gray-700 dark:bg-dark-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-500 transition-colors"
+                    >
+                      <FiGithub className="w-4 h-4" /> Code
+                    </motion.a>
+                  )}
                 </div>
 
                 {/* View Project Button */}

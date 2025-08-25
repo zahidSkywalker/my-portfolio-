@@ -127,6 +127,12 @@ const Skills = () => {
     }
   };
 
+  const revealOnceProps = {
+    initial: { opacity: 0, y: 30 },
+    animate: inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 },
+    transition: { duration: 0.6 }
+  };
+
   return (
     <section id="skills" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark-800 dark:to-dark-900 relative overflow-hidden">
       {/* Animated Background Elements */}

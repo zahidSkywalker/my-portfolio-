@@ -57,6 +57,12 @@ const About = () => {
     }
   };
 
+  const revealOnceProps = {
+    initial: { opacity: 0, y: 30 },
+    animate: inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 },
+    transition: { duration: 0.6 }
+  };
+
   return (
     <section id="about" className="section-padding bg-gray-50 dark:bg-dark-800">
       <div className="container-custom">
@@ -84,8 +90,7 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Story Section */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            {...revealOnceProps}
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
@@ -136,9 +141,8 @@ const About = () => {
 
           {/* Achievements Section */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8 }}
+            {...revealOnceProps}
+            transition={{ duration: 0.8, delay: 0.15 }}
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">

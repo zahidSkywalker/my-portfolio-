@@ -21,6 +21,7 @@ import {
   SiAdobeaftereffects
 } from 'react-icons/si';
 import { AnimatePresence } from 'framer-motion';
+import HeroCanvas from './HeroCanvas';
 
 // Modern Hero component with animated skill bubbles
 const Hero = () => {
@@ -90,6 +91,8 @@ const Hero = () => {
 
   return (
     <section id="home" className="section-padding min-h-screen flex items-center relative overflow-hidden px-4 sm:px-6 lg:px-8">
+      {/* 3D Canvas Background */}
+      <HeroCanvas />
       {/* Gradient Morphing Background */}
       <motion.div
         animate={{ 
